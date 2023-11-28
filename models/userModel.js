@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
+const {config} = require("../config/secret")
 
 let userSchema = new mongoose.Schema({
   name:String,
@@ -8,17 +9,17 @@ let userSchema = new mongoose.Schema({
   password:String,
   date_created:{
     type:Date , default:Date.now()
+  },
+  role:{
+    type:String , default:"user"
   }
 })
 
 exports.UserModel = mongoose.model("users",userSchema);
 
-// פונקציה שמייצרת טוקן 
-exports.createToken = (user_id) => {
-  // מייצר טוקן, שם תכולה - "מטען" - שלו שזה איי די של המשתמש
-  // מילה סודית שרק לנו מותר להכיר אותה
-  // ותוקף  
-  let token = jwt.sign({_id:user_id},"MaorSecret",{expiresIn:"60mins"})
+exports.createToken = (user_id, role) => 
+{
+  let token = jwt.sign({user_id , role},config.tokenSecret,{expiresIn:"60mins"})
   return token;
 }
 
