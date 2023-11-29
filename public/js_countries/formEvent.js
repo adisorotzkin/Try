@@ -17,7 +17,7 @@ export const decalreFormEvent = (_doApi) => {
 
 
 const addNewCountry = async(_bodyData,_doApi) => {
-  let myUrl = "http://localhost:3001/countries"
+  let myUrl = "http://https://try-pmwa.onrender.com:3001/countries"
   try{
     let resp = await axios({
       url:myUrl,

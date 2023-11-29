@@ -30,7 +30,7 @@ export default class CountryClass{
   }
 
   async delCountry(){
-    let url = "http://localhost:3001/countries/"+this.id;
+    let url = "http://https://try-pmwa.onrender.com:3001/countries/"+this.id;
     try{
 
       let resp =  await axios({
